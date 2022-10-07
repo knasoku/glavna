@@ -1,0 +1,46 @@
+{% extends "poll/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Izbrisi Stanar{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Избриши станар за Зграда</h3>
+            </div>
+                
+            <form method="POST">
+                {% csrf_token %}
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="adresa">Адреса</label>
+                                {% render_field form.adresa class="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="stanarUname">Станар Корисничко Име</label>
+                                {% render_field form.stanar class="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+
+                        <hr />
+                        <div class="col-lg-4">
+                            <button type="submit" class="btn btn-info">Избриши</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Зграда - Соопштенија</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for announcement in announcements %}
+                <li class="list-group-item">
+                    <strong>{{ announcement.pk }}. {{ announcement.Zgrada.adresa }} - {{ announcement.announcementHedline }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'announcement_view'  announcement.id %}" class="btn btn-info btn-xs">Погледај</a> &nbsp;  
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Зграда - Резервен фонд</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for zgrada in current_zgradas %}
+                <li class="list-group-item">
+                    <strong>{{ zgrada.adresa }}</strong>
+                    <span class="pull-right">
+                        ажурирано на:{{zgrada.last_updated}}<strong>{{ zgrada.rezerven_fond }} ден.</strong>   
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Достапни Анкети</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for poll in polls %}
+                <li class="list-group-item">
+                    <strong>{{ poll.pk }}. {{ poll.question }} -  {{ poll.Zgrada }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'vote'  poll.id %}" class="btn btn-info btn-xs">Гласај</a> &nbsp;
+                        <a href="{% url 'result'  poll.id %}" class="btn btn-default btn-xs">Резултати</a> &nbsp;
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

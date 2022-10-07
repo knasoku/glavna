@@ -1,0 +1,29 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Upravitel{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Згради</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for zgrada in zgrada %}
+                <li class="list-group-item">
+                    <strong>{{ zgrada.id }} - Адреса:  {{ zgrada.adresa }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'zgrada_home'  zgrada.id %}" class="btn btn-info btn-xs">Повеќе</a> &nbsp;
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div> 
+    </div>
+</div>
+
+
+
+{% endblock %}

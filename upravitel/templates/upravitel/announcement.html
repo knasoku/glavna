@@ -1,0 +1,53 @@
+{% extends "poll/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Announcement{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Креирај Соопштение</h3>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="Zgrada">Наслов</label>
+                                {% render_field form.announcementHedline class="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="Zgrada">Зграда број</label>
+                                {% render_field form.temp_id class="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="question">Внеси го Текстот</label>
+                                {% render_field form.announcementText class="form-control" rows="3" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <hr />
+                        <div class="col-lg-4">
+                            <button type="submit" class="btn btn-info">Внеси</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

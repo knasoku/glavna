@@ -1,0 +1,45 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Poll Page{% endblock %}
+
+{% block main %}
+
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Достапни Анкети</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for poll in poll_list %}
+                <li class="list-group-item">
+                    <strong>{{ poll.pk }}. {{ poll.question }} -  {{ poll.Zgrada }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'vote'  poll.id %}" class="btn btn-info btn-xs">Гласај</a> &nbsp;
+                        <a href="{% url 'result'  poll.id %}" class="btn btn-default btn-xs">Резултати</a> &nbsp;
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {% if poll_list.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ poll_list.previous_page_number }}"><</a></li>
+        {% endif %}
+        <li class="page-item disabled"><a class="page-link" href="#"> Страна {{ poll_list.number }} од {{ poll_list.paginator.num_pages}}</a></li>
+        {% if poll_list.has_next %}
+            <li class="page-link" class="page-item"><a href="?page={{ poll_list.next_page_number }}">></a></li>
+            <li class="page-link" class="page-item"><a href="?page={{ poll_list.paginator.num_pages }}"> &raquo</a></li>
+        {% endif %}
+         </ul>
+        </nav>
+
+    </div>
+</div>
+
+{% endblock %}

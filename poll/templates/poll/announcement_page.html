@@ -1,0 +1,41 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Announcement{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Зграда - Соопштенија</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for announcement in announcement_list %}
+                <li class="list-group-item">
+                    <strong>{{ announcement.pk }}. {{ announcement.Zgrada.adresa }} - {{ announcement.announcementHedline }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'announcement_view'  announcement.id %}" class="btn btn-info btn-xs">Погледај</a> &nbsp;  
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {% if announcement_list.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ announcement_list.previous_page_number }}"><</a></li>
+        {% endif %}
+        <li class="page-item disabled"><a class="page-link" href="#"> Страна {{ announcement_list.number }} од {{ announcement_list.paginator.num_pages}}</a></li>
+        {% if announcement_list.has_next %}
+            <li class="page-link" class="page-item"><a href="?page={{ announcement_list.next_page_number }}">></a></li>
+            <li class="page-link" class="page-item"><a href="?page={{ announcement_list.paginator.num_pages }}"> &raquo</a></li>
+        {% endif %}
+         </ul>
+        </nav>
+    </div>
+</div>
+
+{% endblock %}

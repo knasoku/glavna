@@ -1,0 +1,24 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Announcement{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Соопштение</h3>
+            </div>
+
+            <div class="panel-body">
+                <h3>{{ announcement.announcementHedline }}</h3>
+            </div>
+
+            <div class="panel-body">
+                <p>{{ announcement.announcementText }}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
